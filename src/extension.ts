@@ -5,7 +5,7 @@ export function activate(context: ExtensionContext) {
 	const snippetFiles = ['php.json']; // Substitua com os nomes dos seus arquivos JSON de snippets
 
 	for (const file of snippetFiles) {
-		const snippets = require(`./snippets/${file}`);
+		const snippets = require(`../snippets/${file}`);
 		const languageId = file.split('.')[0];
 
 		// Registra os snippets para a linguagem

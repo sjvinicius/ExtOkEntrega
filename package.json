@@ -2,27 +2,22 @@
   "name": "extok",
   "displayName": "OK_Entrega_SNIPPETS",
   "description": "Atalhos de padroniação de código do okentrega",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.80.0"
   },
   "publisher": "ViniciusSilvadeJesus",
   "categories": [
-    "Other"
+    "Snippets"
   ],
+  "icon": "images/logo/oklogo.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "extok.init",
-        "title": "Hello World"
-      }
-    ],
     "snippets": [
       {
         "language": "php",
-        "path": "./src/snippets/php.json"
+        "path": "./snippets/php.json"
       }
     ]
   },
