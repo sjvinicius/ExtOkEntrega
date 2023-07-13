@@ -1,14 +1,15 @@
 {
   "name": "extok",
-  "displayName": "OK_Entrega_SNIPPETS",
+  "displayName": "OK Entrega (Snippets)",
   "description": "Atalhos de padroniação de código do okentrega",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.80.0"
   },
   "publisher": "ViniciusSilvadeJesus",
   "categories": [
-    "Snippets"
+    "Snippets",
+    "Other"
   ],
   "icon": "images/logo/oklogo.png",
   "activationEvents": [],
@@ -18,9 +19,21 @@
       {
         "language": "php",
         "path": "./snippets/php.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
       }
     ]
   },
+  "keywords": [
+		"Ok",
+		"Ok Entrega",
+		"Ok ENTREGA",
+		"OKENTREGA",
+		"OK",
+		"ok"
+	],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",

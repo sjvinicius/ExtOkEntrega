@@ -1,10 +1,44 @@
 {
-	"Print to console": {
-		"prefix": "oklog",
-		"body": [
-			"console.log('$1');teste123",
-			"$2"
-		],
-		"description": "Log output to console"
-	}
+    "PRINT - DEV": {
+        "prefix": "okprintdev",
+        "body": [
+            "if (\\$this->acesso['user_id'] == '') {",
+            "    print_r('<br><br><pre>');",
+            "    var_dump(${0:message});",
+            "    print_r('<br><br></pre>');",
+            "    die();",
+            "}"
+        ],
+        "description": "print_r()"
+    },
+    "PRINT - HML": {
+        "prefix": "okprinthml",
+        "body": [
+            "if (\\$this->acesso['user_id'] == '') {",
+            "    print_r('<br><br><pre>');",
+            "    var_dump(${0:message});",
+            "    print_r('<br><br></pre>');",
+            "    die();",
+            "}"
+        ],
+        "description": "print_r()"
+    },
+    "trycatchfinally": {
+        "prefix": "oktrycatchfinally",
+        "body": [
+            "try {",
+            "    //! In case of error in __construct ",
+            "    if (\\$this->retorno['resposta_status']['status'] == 1) {",
+            "        \\$this->retorno = \\$this->iniciar_retornofuncao();",
+            "    }",
+            "} catch (\\Exception \\$e) {",
+            "    \\$this->retorno(\\$e->getLine(), \\$e->getMessage(), status: \\$e->getCode());",
+            "} finally {",
+            "    \\$this->retorno['resposta_status']['time'] = microtime(true) - \\$this->retorno['resposta_status']['time'];",
+            "}",
+            "",
+            "return \\$this->retorno;"
+        ],
+        "description": "try catch finally default"
+    }
 }

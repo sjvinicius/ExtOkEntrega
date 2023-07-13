@@ -2,7 +2,7 @@ import { ExtensionContext, languages, CompletionItem, CompletionItemKind, Snippe
 
 export function activate(context: ExtensionContext) {
 	// Carrega os snippets
-	const snippetFiles = ['php.json']; // Substitua com os nomes dos seus arquivos JSON de snippets
+	const snippetFiles = ['php.json','javascript.json'];
 
 	for (const file of snippetFiles) {
 		const snippets = require(`../snippets/${file}`);
@@ -19,8 +19,7 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 	const provider = {
 		provideCompletionItems() {
 			const completionItems = Object.keys(snippets).map((label) => {
-				console.log(snippets);
-				console.log(label);
+				
 				const snippet = snippets[label];
 				const completionItem = new CompletionItem(snippet.prefix, CompletionItemKind.Snippet);
 				completionItem.insertText = new SnippetString(snippet.body.join('\n'));

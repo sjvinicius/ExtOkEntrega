@@ -1,0 +1,56 @@
+{
+	"Object Ajax": {
+		"prefix": "okajax",
+		"body": [
+			"let ajax = new OkAjax('${1:FunctionName}', '${2:File}');",
+			"",
+			"ajax.DataProps = {};",
+			"",
+			"ajax.ReturnProps = {",
+			"btn: ${3:Element}",
+			"\tsuccess: function (response) { ",
+			"\t\tif(response.resposta_status.status === 1) { ",
+			"\t\t\t// code here...",
+			"\t\t\treturn;",
+			"\t\t}",
+			"\t\t// else if(false) {",
+			"\t\t// \t// code here...",
+			"\t\t// \treturn;",
+			"\t\t// }",
+			"",
+			"\t\tOkToast({ type: 'error', msg: response.resposta_status.msg });",
+			"\t}, ",
+			"\terror: ajax.error",
+			"};",
+			"",
+			"ajax.Request();",
+			"ajax = null;"
+		],
+		"description": "Modelo ajax"
+	},
+	"Object DataTable": {
+		"prefix": "okdataTable",
+		"body": [
+			"let table = new OkDataTable('${1:TableId}', ${2:Data});",
+			"",
+			"table.Columns = [];",
+			"",
+			"table.ColumnsDefs = [];",
+			"",
+			"table.PropsCallable = {",
+			"\tinitComplete: function () {",
+			"\t\tconst intervalpool = setInterval(() => {",
+			"\t\t\t${3:MyTable}.columns.adjust().draw();",
+			"\t\t\tclearInterval(intervalpool);",
+			"\t\t}, 400);",
+			"",
+			"\t\t$.fn.dataTable.moment('DD/MM/YY');",
+			"\t}",
+			"};",
+			"",
+			"const ${3:MyTable} = table.Generate();",
+			"table = null;"
+		],
+		"description": "Modelo dataTable"
+	}
+}
