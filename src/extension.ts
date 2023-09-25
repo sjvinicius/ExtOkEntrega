@@ -1,4 +1,6 @@
 import { ExtensionContext, languages, CompletionItem, CompletionItemKind, SnippetString, MarkdownString } from 'vscode';
+const vscode = require('vscode');
+const functionDescriptions = require('./functions.json');
 
 export function activate(context: ExtensionContext) {
 	// Carrega os snippets
@@ -11,6 +13,15 @@ export function activate(context: ExtensionContext) {
 		// Registra os snippets para a linguagem
 		registerSnippets(snippets, languageId, context);
 	}
+
+	const hoverProvider = vscode.languages.registerHoverProvider(
+        { scheme: 'file', language: 'javascript' },
+        {
+            provideHover
+        }
+    );
+
+	context.subscriptions.push(hoverProvider);
 }
 
 function registerSnippets(snippets: any, languageId: string, context: ExtensionContext) {
@@ -34,6 +45,33 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 	context.subscriptions.push(
 		languages.registerCompletionItemProvider(languageId, provider)
 	);
+}
+
+function createHoverContent(functionName) {
+    const functionInfo = functionDescriptions[functionName];
+    if (!functionInfo) return null;
+
+    let hoverContent = `**${functionInfo.title}**\n\n`;
+    hoverContent += `${functionInfo.description}\n\n`;
+
+    if (functionInfo.params && functionInfo.params.length > 0) {
+        hoverContent += "**Parâmetros:**\n\n";
+        for (const param of functionInfo.params) {
+            hoverContent += `- *${param.name}*: ${param.description}\n`;
+        }
+    }
+
+    return hoverContent;
+}
+
+function provideHover(document, position) {
+    const wordRange = document.getWordRangeAtPosition(position);
+    const word = document.getText(wordRange);
+
+    const hoverContent = createHoverContent(word);
+    if (hoverContent) {
+		return new vscode.Hover(hoverContent);
+    }
 }
 
 class SnippetCompletionItem extends CompletionItem {

@@ -1,5 +1,5 @@
 {
-    "PRINT - DEV": {
+    "DEVELOPMENT (OK)": {
         "prefix": "okprintdev",
         "body": [
             "if (\\$this->acesso['user_id'] == '') {",
@@ -9,9 +9,9 @@
             "    die();",
             "}"
         ],
-        "description": "print_r()"
+        "description": "print_r + if de usuário DESENVOLVIMENTO" 
     },
-    "PRINT - HML": {
+    "HOMOLOG (OK)": {
         "prefix": "okprinthml",
         "body": [
             "if (\\$this->acesso['user_id'] == '') {",
@@ -21,9 +21,9 @@
             "    die();",
             "}"
         ],
-        "description": "print_r()"
+        "description": "print_r + if de usuário HOMOLOGAÇÃO"
     },
-    "trycatchfinally": {
+    "FULL (RG-HC)": {
         "prefix": "oktrycatchfinally",
         "body": [
             "try {",
@@ -40,5 +40,46 @@
             "return \\$this->retorno;"
         ],
         "description": "try catch finally default"
-    }
+    },
+    "FULL (OK)": {
+        "prefix": "okgethostname",
+        "body": [
+            "switch (gethostname()) {",
+			"\tcase 'oks-s-dev':",
+			"\t\t$$url = 'http://oks-s-dev.stil';",
+			"\tbreak;",
+			"\tcase 'oks-s-hml':",
+			"\t\t$$url = 'https://hml.okentrega.com.br';",
+			"\tbreak;",
+			"\tcase 'oks-web01-p':",
+			"\t\t$$url = 'https://www.okentrega.com.br';",
+			"\tbreak;",
+			"\tdefault:",
+			"\t\t$$url = '';",
+			"\tbreak;",
+			"}"
+        ],
+        "description": "Diferencia a variável de URL pelo hostname do servidor."
+    },
+    "SESSION CLIENTE_ID": {
+		"prefix": "oksessionclienteid",
+		"body": [
+			"$$_SESSION['okentrega']['acesso']['cliente_id']"
+		],
+		"description": "Captura o valor do CLIENTE_ID da sessão."
+	},
+	"SESSION USER_ID": {
+		"prefix": "oksessionuserid",
+		"body": [
+			"$$_SESSION['okentrega']['acesso']['user_id']"
+		],
+		"description": "Captura o valor do USER_ID da sessão."
+	},
+	"SESSION TOKEN": {
+		"prefix": "oksessiontoken",
+		"body": [
+			"$$_SESSION['okentrega']['acesso']['token']"
+		],
+		"description": "Captura o valor do TOKEN da sessão."
+	}
 }

@@ -1,8 +1,8 @@
 {
   "name": "extok",
-  "displayName": "OK Entrega (Snippets)",
+  "displayName": "OK Entrega (Snippets/Formatter)",
   "description": "Atalhos de padroniação de código do okentrega",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -13,6 +13,7 @@
   "publisher": "ViniciusSilvadeJesus",
   "categories": [
     "Snippets",
+    "Formatters",
     "Other"
   ],
   "icon": "images/logo/oklogo.png",
