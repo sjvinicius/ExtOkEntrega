@@ -1,4 +1,14 @@
-import { ExtensionContext, languages, CompletionItem, CompletionItemKind, SnippetString, MarkdownString } from 'vscode';
+import { 
+	ExtensionContext, 
+	languages, 
+	CompletionItem, 
+	CompletionItemKind, 
+	SnippetString, 
+	MarkdownString, 
+	TextDocument,
+	Position,
+	Hover
+} from 'vscode';
 const vscode = require('vscode');
 const functionDescriptions = require('./functions.json');
 
@@ -47,7 +57,7 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 	);
 }
 
-function createHoverContent(functionName) {
+function createHoverContent(functionName: string): string | null {
     const functionInfo = functionDescriptions[functionName];
     if (!functionInfo) return null;
 
@@ -64,13 +74,13 @@ function createHoverContent(functionName) {
     return hoverContent;
 }
 
-function provideHover(document, position) {
+function provideHover(document: TextDocument, position: Position): Hover | undefined {
     const wordRange = document.getWordRangeAtPosition(position);
-    const word = document.getText(wordRange);
+    const word = wordRange ? document.getText(wordRange) : "";
 
     const hoverContent = createHoverContent(word);
     if (hoverContent) {
-		return new vscode.Hover(hoverContent);
+        return new vscode.Hover(hoverContent);
     }
 }
 

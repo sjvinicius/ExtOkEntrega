@@ -1,0 +1,26 @@
+{
+    "minhaFuncao": {
+        "title": "Minha Função",
+        "description": "Esta função realiza uma tarefa importante.",
+        "params": [
+            {
+                "name": "parametro1",
+                "description": "O primeiro parâmetro."
+            },
+            {
+                "name": "parametro2",
+                "description": "O segundo parâmetro."
+            }
+        ]
+    },
+    "outraFuncao": {
+        "title": "Outra Função",
+        "description": "Essa função lida com outro aspecto do programa.",
+        "params": [
+            {
+                "name": "parametro1",
+                "description": "O primeiro parâmetro."
+            }
+        ]
+    }
+}
