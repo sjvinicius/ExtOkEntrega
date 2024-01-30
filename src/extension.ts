@@ -59,7 +59,7 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 
 function createHoverContent(functionName: string): string | null {
     const functionInfo = functionDescriptions[functionName];
-    if (!functionInfo) return null;
+    if (!functionInfo) {return null;}
 
     let hoverContent = `**${functionInfo.title}**\n\n`;
     hoverContent += `${functionInfo.description}\n\n`;
