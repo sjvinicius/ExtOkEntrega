@@ -1,6 +1,41 @@
 import { ExtensionContext, languages, CompletionItem, CompletionItemKind, SnippetString, MarkdownString } from 'vscode';
-const vscode = require('vscode');
-const functionDescriptions = require('./functions.json');
+import vscode = require('vscode');
+// import * as functionDescriptions from '../descriptions/funcDescript.json';
+
+interface FunctionDescriptions {
+	[key: string]: {
+	    title: string;
+	    description: string;
+	    params: { name: string; description: string; }[];
+	};
+ }
+ 
+ const functionDescriptions: FunctionDescriptions = {
+     minhaFuncao: {
+          title: "Minha Função",
+          description: "Esta função realiza uma tarefa importante.",
+          params: [
+               {
+                    name: "parametro1",
+                    description: "O primeiro parâmetro."
+               },
+               {
+                    name: "parametro2",
+                    description: "O segundo parâmetro."
+               }
+          ]
+     },
+     outraFuncao: {
+          title: "Outra Função",
+          description: "Essa função lida com outro aspecto do programa.",
+          params: [
+               {
+                    name: "parametro1",
+                    description: "O primeiro parâmetro."
+               }
+          ]
+     }
+};
 
 export function activate(context: ExtensionContext) {
 	// Carrega os snippets
@@ -47,24 +82,25 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 	);
 }
 
-function createHoverContent(functionName) {
-    const functionInfo = functionDescriptions[functionName];
-    if (!functionInfo) return null;
+function createHoverContent(functionName: string) {
 
-    let hoverContent = `**${functionInfo.title}**\n\n`;
-    hoverContent += `${functionInfo.description}\n\n`;
-
-    if (functionInfo.params && functionInfo.params.length > 0) {
-        hoverContent += "**Parâmetros:**\n\n";
-        for (const param of functionInfo.params) {
-            hoverContent += `- *${param.name}*: ${param.description}\n`;
-        }
-    }
-
-    return hoverContent;
+	const functionInfo = functionDescriptions[functionName];
+	if (!functionInfo) {return null};
+ 
+	let hoverContent = `**${functionInfo.title}**\n\n`;
+	hoverContent += `${functionInfo.description}\n\n`;
+ 
+	if (functionInfo.params && functionInfo.params.length > 0) {
+	    hoverContent += "**Parâmetros:**\n\n";
+	    for (const param of functionInfo.params) {
+		   hoverContent += `- *${param.name}*: ${param.description}\n`;
+	    }
+	}
+ 
+	return hoverContent;
 }
 
-function provideHover(document, position) {
+function provideHover(document: vscode.TextDocument, position: vscode.Position) {
     const wordRange = document.getWordRangeAtPosition(position);
     const word = document.getText(wordRange);
 
