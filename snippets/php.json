@@ -1,6 +1,6 @@
 {
     "DEVELOPMENT (OK)": {
-        "prefix": "okprintdev",
+        "prefix": "okphp8printdev",
         "body": [
             "if (\\$this->acesso['user_id'] == '') {",
             "    print_r('<br><br><pre>');",
@@ -12,7 +12,7 @@
         "description": "print_r + if de usuário DESENVOLVIMENTO" 
     },
     "HOMOLOG (OK)": {
-        "prefix": "okprinthml",
+        "prefix": "okphp8printhml",
         "body": [
             "if (\\$this->acesso['user_id'] == '') {",
             "    print_r('<br><br><pre>');",
@@ -24,7 +24,7 @@
         "description": "print_r + if de usuário HOMOLOGAÇÃO"
     },
     "FULL (RG-HC)": {
-        "prefix": "oktrycatchfinally",
+        "prefix": "okphp8trycatchfinally",
         "body": [
             "try {",
             "    //! In case of error in __construct ",
@@ -42,7 +42,7 @@
         "description": "try catch finally default"
     },
     "FULL (OK)": {
-        "prefix": "okgethostname",
+        "prefix": "okphp8gethostname",
         "body": [
             "switch (gethostname()) {",
 			"\tcase 'oks-s-dev':",
@@ -62,21 +62,21 @@
         "description": "Diferencia a variável de URL pelo hostname do servidor."
     },
     "SESSION CLIENTE_ID": {
-		"prefix": "oksessionclienteid",
+		"prefix": "okphp8sessionclienteid",
 		"body": [
 			"$$_SESSION['okentrega']['acesso']['cliente_id']"
 		],
 		"description": "Captura o valor do CLIENTE_ID da sessão."
 	},
 	"SESSION USER_ID": {
-		"prefix": "oksessionuserid",
+		"prefix": "okphp8sessionuserid",
 		"body": [
 			"$$_SESSION['okentrega']['acesso']['user_id']"
 		],
 		"description": "Captura o valor do USER_ID da sessão."
 	},
 	"SESSION TOKEN": {
-		"prefix": "oksessiontoken",
+		"prefix": "okphp8sessiontoken",
 		"body": [
 			"$$_SESSION['okentrega']['acesso']['token']"
 		],
