@@ -1,18 +1,17 @@
-import { 
-	ExtensionContext, 
-	languages, 
-	CompletionItem, 
-	CompletionItemKind, 
-	SnippetString, 
-	MarkdownString, 
-	TextDocument,
-	Position,
-	Hover
-} from 'vscode';
-const vscode = require('vscode');
-const functionDescriptions = require('./functions.json');
+import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
 
-export function activate(context: ExtensionContext) {
+// Interface para representar informações sobre uma função personalizada
+interface CustomFunctionInfo {
+  description: string;
+  parameters: { name: string; description: string }[];
+}
+
+// Mapeamento de funções personalizadas para informações relevantes
+const customFunctionInfo: Record<string, CustomFunctionInfo> = loadCustomFunctionInfo();
+
+export function activate(context: vscode.ExtensionContext) {
 	// Carrega os snippets
 	const snippetFiles = ['php.json','javascript.json'];
 
@@ -24,17 +23,39 @@ export function activate(context: ExtensionContext) {
 		registerSnippets(snippets, languageId, context);
 	}
 
-	const hoverProvider = vscode.languages.registerHoverProvider(
-        { scheme: 'file', language: 'javascript' },
-        {
-            provideHover
-        }
-    );
-
-	context.subscriptions.push(hoverProvider);
+	let disposable = vscode.languages.registerHoverProvider('php', {
+		provideHover(document, position, token) {
+		  // Obter a palavra no local do cursor
+		  const wordRange = document.getWordRangeAtPosition(position);
+		  const currentWord = wordRange ? document.getText(wordRange) : '';
+	 
+		  // Verificar se a palavra é uma função personalizada
+		  if (isCustomFunction(currentWord)) {
+		    const functionInfo = customFunctionInfo[currentWord];
+	 
+		    if (functionInfo) {
+			 // Construir a string de documentação com informações sobre a função e parâmetros
+			 const hoverText = `**${currentWord}**\n\n${functionInfo.description}\n\n`;
+	 
+			 if (functionInfo.parameters.length > 0) {
+			   const parametersText = functionInfo.parameters
+				.map((param) => `* \`${param.name}\`: ${param.description}`)
+				.join('\n');
+			   return new vscode.Hover(new vscode.MarkdownString(hoverText + parametersText));
+			 } else {
+			   return new vscode.Hover(new vscode.MarkdownString(hoverText));
+			 }
+		    }
+		  }
+	 
+		  return undefined; // Nenhum hover fornecido para a palavra atual
+		},
+	   });
+	 
+	   context.subscriptions.push(disposable);
 }
 
-function registerSnippets(snippets: any, languageId: string, context: ExtensionContext) {
+function registerSnippets(snippets: any, languageId: string, context: vscode.ExtensionContext) {
 
 	// Registra os snippets para a linguagem
 	const provider = {
@@ -42,9 +63,9 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 			const completionItems = Object.keys(snippets).map((label) => {
 				
 				const snippet = snippets[label];
-				const completionItem = new CompletionItem(snippet.prefix, CompletionItemKind.Snippet);
-				completionItem.insertText = new SnippetString(snippet.body.join('\n'));
-				completionItem.documentation = new MarkdownString(snippet.description);
+				const completionItem = new vscode.CompletionItem(snippet.prefix, vscode.CompletionItemKind.Snippet);
+				completionItem.insertText = new vscode.SnippetString(snippet.body.join('\n'));
+				completionItem.documentation = new vscode.MarkdownString(snippet.description);
 				return completionItem;
 			});
 			return completionItems;
@@ -53,41 +74,33 @@ function registerSnippets(snippets: any, languageId: string, context: ExtensionC
 
 	// Registra o provedor de snippets
 	context.subscriptions.push(
-		languages.registerCompletionItemProvider(languageId, provider)
+		vscode.languages.registerCompletionItemProvider(languageId, provider)
 	);
 }
 
-function createHoverContent(functionName: string): string | null {
-    const functionInfo = functionDescriptions[functionName];
-    if (!functionInfo) {return null;}
 
-    let hoverContent = `**${functionInfo.title}**\n\n`;
-    hoverContent += `${functionInfo.description}\n\n`;
-
-    if (functionInfo.params && functionInfo.params.length > 0) {
-        hoverContent += "**Parâmetros:**\n\n";
-        for (const param of functionInfo.params) {
-            hoverContent += `- *${param.name}*: ${param.description}\n`;
-        }
-    }
-
-    return hoverContent;
-}
-
-function provideHover(document: TextDocument, position: Position): Hover | undefined {
-    const wordRange = document.getWordRangeAtPosition(position);
-    const word = wordRange ? document.getText(wordRange) : "";
-
-    const hoverContent = createHoverContent(word);
-    if (hoverContent) {
-        return new vscode.Hover(hoverContent);
-    }
-}
-
-class SnippetCompletionItem extends CompletionItem {
+class SnippetCompletionItem extends vscode.CompletionItem {
 	constructor(prefix: string, body: string[]) {
 		super(prefix);
-		this.insertText = new SnippetString(body.join('\n'));
-		this.documentation = new MarkdownString('Snippetmd');
+		this.insertText = new vscode.SnippetString(body.join('\n'));
+		this.documentation = new vscode.MarkdownString('Snippetmd');
 	}
 }
+
+// Método para carregar informações das funções personalizadas a partir de um arquivo JSON
+function loadCustomFunctionInfo(): Record<string, CustomFunctionInfo> {
+	try {
+	  const extensionPath = vscode.extensions.getExtension('seuNome.suaExtensao')?.extensionPath || '';
+	  const filePath = path.join(extensionPath, 'customFunctionInfo.json');
+	  const fileContent = fs.readFileSync(filePath, 'utf-8');
+	  return JSON.parse(fileContent);
+	} catch (error) {
+	  console.error('Erro ao carregar informações das funções personalizadas:', error);
+	  return {};
+	}
+   }
+   
+   // Método de verificação simples para funções personalizadas
+   function isCustomFunction(word: string): boolean {
+	return Object.keys(customFunctionInfo).includes(word);
+   }

@@ -1,7 +1,7 @@
 {
   "name": "extok",
   "displayName": "OK Entrega (Snippets/Formatter)",
-  "description": "Atalhos de padroniação de código do okentrega",
+  "description": "Atalhos de padronização de código do OK Entrega",
   "version": "0.1.2",
   "engines": {
     "vscode": "^1.80.0"
