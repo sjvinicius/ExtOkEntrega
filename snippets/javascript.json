@@ -60,6 +60,6 @@
             "OkToast({ type: '${2:error|success|show|warning}', msg: '${2:message}' });"
         ],
         "description": "Templaete para montagem da tabela utilizando o DataTable"
-    },
+    }
 
 }
