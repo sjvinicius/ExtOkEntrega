@@ -1,85 +1,167 @@
 {
-    "DEVELOPMENT (OK)": {
+    "sessionClienteId": {
+        "prefix": "okphp8sessionclienteid",
+        "body": [
+            "\\$_SESSION['okentrega']['acesso']['cliente_id']"
+        ],
+        "description": "Captura o valor do CLIENTE_ID da sessão."
+    },
+    "sessionUserId": {
+        "prefix": "okphp8sessionuserid",
+        "body": [
+            "\\$_SESSION['okentrega']['acesso']['user_id']"
+        ],
+        "description": "Captura o valor do USER_ID da sessão."
+    },
+    "sessionToken": {
+        "prefix": "okphp8sessiontoken",
+        "body": [
+            "\\$_SESSION['okentrega']['acesso']['token']"
+        ],
+        "description": "Captura o valor do TOKEN da sessão."
+    },
+    "devPrint": {
         "prefix": "okphp8printdev",
         "body": [
-            "if (\\$this->acesso['user_id'] == '') {",
-            "    print_r('<br><br><pre>');",
-            "    var_dump(${0:message});",
-            "    print_r('<br><br></pre>');",
-            "    die();",
+            "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okDevUserId}) {",
+            "\tprint_r('<br><br><pre>');",
+            "\tprint_r(${2:message});",
+            "\tprint_r('<br><br></pre>');",
+            "\tdie();",
             "}"
         ],
-        "description": "print_r + if de usuário DESENVOLVIMENTO" 
+        "description": "print_r + if de usuário DESENVOLVIMENTO"
     },
-    "HOMOLOG (OK)": {
+    "hmlPrint": {
         "prefix": "okphp8printhml",
         "body": [
-            "if (\\$this->acesso['user_id'] == '') {",
-            "    print_r('<br><br><pre>');",
-            "    var_dump(${0:message});",
-            "    print_r('<br><br></pre>');",
-            "    die();",
+            "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okHmlUserId}) {",
+            "\tprint_r('<br><br><pre>');",
+            "\tprint_r(${2:message});",
+            "\tprint_r('<br><br></pre>');",
+            "\tdie();",
             "}"
         ],
         "description": "print_r + if de usuário HOMOLOGAÇÃO"
     },
-    "FULL (RG-HC)": {
+    "prodPrint": {
+        "prefix": "okphp8printprod",
+        "body": [
+            "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okProdUserId}) {",
+            "\tprint_r('<br><br><pre>');",
+            "\tprint_r(${2:message});",
+            "\tprint_r('<br><br></pre>');",
+            "\tdie();",
+            "}"
+        ],
+        "description": "print_r + if de usuário PRODUÇÃO"
+    },
+    "tryCatchFinally": {
         "prefix": "okphp8trycatchfinally",
         "body": [
             "try {",
-            "    //! In case of error in __construct ",
-            "    if (\\$this->retorno['resposta_status']['status'] == 1) {",
-            "        \\$this->retorno = \\$this->iniciar_retornofuncao();",
-            "    }",
-            "} catch (\\Exception \\$e) {",
-            "    \\$this->retorno(\\$e->getLine(), \\$e->getMessage(), status: \\$e->getCode());",
-            "} finally {",
-            "    \\$this->retorno['resposta_status']['time'] = microtime(true) - \\$this->retorno['resposta_status']['time'];",
-            "}",
             "",
-            "return \\$this->retorno;"
+            "} catch (\\\\Exception \\$e) {",
+            "\t\\$trace = \\$retorno['resposta_status']['files_error'];",
+            "\t\\$retorno = (new Retorno())->erro_retornofuncao(",
+            "\t\tline: \\$e->getLine(),",
+            "\t\tmsg: \\$e->getMessage(),",
+            "\t\terro_code: null,",
+            "\t\tstatus: \\$e->getCode(),",
+            "\t\ttrace: count(\\$trace) > 0 ? \\$trace : [__CLASS__ => ['function' => __FUNCTION__, 'file' => __FILE__]]",
+            "\t);",
+            "} finally {",
+            "\\$retorno['resposta_status']['time'] = microtime(true) - \\$retorno['resposta_status']['time'];",
+            "}"
         ],
         "description": "try catch finally default"
     },
-    "FULL (OK)": {
+    "okGetHostName": {
         "prefix": "okphp8gethostname",
         "body": [
-            "switch (gethostname()) {",
-			"\tcase 'oks-s-dev':",
-			"\t\t$$url = 'http://oks-s-dev.stil';",
-			"\tbreak;",
-			"\tcase 'oks-s-hml':",
-			"\t\t$$url = 'https://hml.okentrega.com.br';",
-			"\tbreak;",
-			"\tcase 'oks-web01-p':",
-			"\t\t$$url = 'https://www.okentrega.com.br';",
-			"\tbreak;",
-			"\tdefault:",
-			"\t\t$$url = '';",
-			"\tbreak;",
-			"}"
+            "$host = new Host();",
+            "",
+            "$host->getAcronymServerName() : string",
+            "// 'DEV' || 'HML' || 'PROD'",
+            "",
+            "$host->getBaseUrl($acronym = '') : string",
+            "// - Retorna a base url : ",
+            "// - http://oks-s-dev.stil",
+            "// - https://hml.okentrega.com.br",
+            "// - https://www.okentrega.com.br"
         ],
         "description": "Diferencia a variável de URL pelo hostname do servidor."
     },
-    "SESSION CLIENTE_ID": {
-		"prefix": "okphp8sessionclienteid",
-		"body": [
-			"$$_SESSION['okentrega']['acesso']['cliente_id']"
-		],
-		"description": "Captura o valor do CLIENTE_ID da sessão."
-	},
-	"SESSION USER_ID": {
-		"prefix": "okphp8sessionuserid",
-		"body": [
-			"$$_SESSION['okentrega']['acesso']['user_id']"
-		],
-		"description": "Captura o valor do USER_ID da sessão."
-	},
-	"SESSION TOKEN": {
-		"prefix": "okphp8sessiontoken",
-		"body": [
-			"$$_SESSION['okentrega']['acesso']['token']"
-		],
-		"description": "Captura o valor do TOKEN da sessão."
-	}
+    "okInitReturn": {
+        "prefix": "okphp8initretorno",
+        "body": [
+            "\\$retorno = (new Retorno())->iniciar_retornofuncao();"
+        ],
+        "description": "Diferencia a variável de URL pelo hostname do servidor."
+    },
+    "okMiddleware": {
+        "prefix": "okphp8middleware",
+        "body": [
+            "include_once(Middleware.php);",
+            "",
+            "\\$middleware = new Middleware();",
+            "",
+            "// ${1} - Constante ou diretório até o arquivo",
+            "// ${2} - Nome do arquivo + extensão",
+            "// ${3} - Nome da Classe",
+            "// ${4} - Nome da Função",
+            "// ${5} - ['constructor' => [] 'function' => []] -- Parâmetro em ordem, do constructor ou da função",
+            "",
+            "\\$response = $middleware->handle('${1:Constante ou diretório até o arquivo}@${2:Nome do arquivo + extensão}', '${3:Nome da Classe}@${4:Nome da Função}', ${5:['constructor' => [] 'function' => []]});",
+            "",
+            "\\$retorno = [];",
+            "if (\\$response['resposta_status']['status'] == 1) {",
+            "\t\\$retorno = \\$response['resposta_dados']['curl_json'];",
+            "}"
+        ],
+        "description": "Diferencia a variável de URL pelo hostname do servidor."
+    },
+    "okInitClass": {
+        "prefix": "okphp8initclass",
+        "body": [
+            "if (!isset(\\$_SESSION)) {",
+            "\tsession_start();",
+            "}",
+            "",
+            "include_once(dirname(__DIR__, 1) . '/system/obj/bootstrap.php8');",
+            "include_once(dirname(__DIR__, 1) . '/system/sys.callproc.php8');",
+            "include_once(SYSTEM . 'sys.access.control.php8');",
+            "",
+            "include_once(\\$_SESSION['okentrega']['path']['system'].'sys.access.control.php8');",
+            "",
+            "class regfilavalidacao extends sys_accesscontrol",
+            "{",
+            "",
+            "\tpublic \\$retorno = [];",
+            "\tpublic \\$token = '';",
+            "\tpublic function __construct()",
+            "\t{",
+            "\t\tparent::__construct();",
+            "\t\t\\$this->retorno = (new Retorno())->iniciar_retornofuncao();",
+            "\t\t\\$this->token = \\$_SESSION['okentrega']['acesso']['token'];",
+            "\t}",
+            "}"
+        ],
+        "description": "Diferencia a variável de URL pelo hostname do servidor."
+    },
+    "okQuery": {
+        "prefix": "okphp8initclass",
+        "body": [
+            "\\$sql = '${1:sql}'",
+            "",
+            "\\$result_query = (new Query())->query($sql);",
+            "",
+            "if (\\$result_query['resposta_status']['status'] == 0) {",
+                "\tthrow new Exception(\\$result_query['resposta_status']['msg']);",
+            "}",
+            "",
+            "\\$this->retorno['resposta_dados']['list'] = \\$result_query['resposta_dados']['query'];"
+        ],
+        "description": "Diferencia a variável de URL pelo hostname do servidor."
+    }
 }

@@ -1,53 +1,65 @@
 {
-	"Object Ajax": {
-		"prefix": "okajax",
-		"body": [
-			"let ajax = new OkAjax('${1:FunctionName}', '${2:File}');",
+    "objectAjax": {
+        "prefix": "okajax",
+        "body": [
+            "let ajax = new OkAjax('${1:FunctionName}', '${2:File}');",
+            "",
+            "ajax.dataProps = {};",
+            "",
+            "ajax.returnProps = {",
+            "\tsuccess: function (response) { ",
+            "\t\tif(response.resposta_status.status === 1) { ",
+            "\t\t\tiziToast.destroy();",
+            "\t\t\t",
+            "\t\t\treturn;",
+            "\t\t}",
+            "",
+            "\t\tOkToast({ type: response.resposta_status.type, msg: response.resposta_status.msg });",
+            "\t}, ",
+            "\terror: ajax.error",
+            "};",
+            "",
+            "ajax.Request();",
+            "ajax = null;"
+        ],
+        "description": "Template de requisições ajax para comunicação com o backend através do javascript"
+    },
+    "Ok DataTable": {
+        "prefix": "okdatatable",
+        "body": [
+            "let table = new OkDataTable('${1:TableId}');",
 			"",
-			"ajax.DataProps = {};",
+			"table.data = ${2:Data}",
 			"",
-			"ajax.ReturnProps = {",
-			"\tbtn: document.getElementById('${3:Element}');",
-			"\tsuccess: function (response) { ",
-			"\t\tif(response.resposta_status.status === 1) { ",
-			"\t\t\tizitoast.destroy();",
-			"\t\t\t// code here...",
-			"\t\t\treturn;",
-			"\t\t}",
+			"table.columns = [",
+			"\t{ title: 'nome_da_coluna1',data: 'nome_da_prop1' }",
+			"];",
 			"",
-			"\t\tOkToast({ type: response.resposta_status.type, msg: response.resposta_status.msg });",
-			"\t}, ",
-			"\terror: ajax.error",
-			"};",
+			"table.columnDefs = [{ orderable: false, targets: [0] }];",
 			"",
-			"ajax.Request();",
-			"ajax = null;"
-		],
-		"description": "Modelo ajax"
-	},
-	"Object DataTable": {
-		"prefix": "okdataTable",
-		"body": [
-			"let table = new OkDataTable('${1:TableId}', ${2:Data});",
+			"table.additionalProps = {};",
 			"",
-			"table.Columns = [];",
-			"",
-			"table.ColumnsDefs = [];",
-			"",
-			"table.PropsCallable = {",
-			"\tinitComplete: function () {",
+			"table.eventsFn = {",  
+			"\tinitComplete: function (settings, json) {",
 			"\t\tconst intervalpool = setInterval(() => {",
 			"\t\t\t${3:MyTable}.columns.adjust().draw();",
 			"\t\t\tclearInterval(intervalpool);",
-			"\t\t}, 400);",
+			"\t\t}, 1000);",
 			"",
-			"\t\t$.fn.dataTable.moment('DD/MM/YY');",
 			"\t}",
 			"};",
 			"",
 			"const ${3:MyTable} = table.Generate();",
 			"table = null;"
-		],
-		"description": "Modelo dataTable"
-	}
+        ],
+        "description": "Templaete para montagem da tabela utilizando o DataTable"
+    },
+    "Ok Toast": {
+        "prefix": "okdatatable",
+        "body": [
+            "OkToast({ type: '${2:error|success|show|warning}', msg: '${2:message}' });"
+        ],
+        "description": "Templaete para montagem da tabela utilizando o DataTable"
+    },
+
 }
