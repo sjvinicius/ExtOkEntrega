@@ -52,14 +52,14 @@
 			"const ${3:MyTable} = table.Generate();",
 			"table = null;"
         ],
-        "description": "Templaete para montagem da tabela utilizando o DataTable"
+        "description": "Template para montagem da tabela utilizando o DataTable"
     },
     "Ok Toast": {
-        "prefix": "okdatatable",
+        "prefix": "oktoast",
         "body": [
-            "OkToast({ type: '${2:error|success|show|warning}', msg: '${2:message}' });"
+            "OkToast({ type: '${1:error|success|show|warning}', msg: '${2:message}' });"
         ],
-        "description": "Templaete para montagem da tabela utilizando o DataTable"
+        "description": "Template para chamada da função do iziToast"
     }
 
 }
