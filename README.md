@@ -57,7 +57,7 @@ Se você encontrar algum problema com a extensão ou tiver sugestões de melhori
 Contribuições para a extensão são bem-vindas! Sinta-se à vontade para enviar pull requests com correções de bugs, novos recursos ou melhorias de documentação.
 
 ## Licença
-Esta extensão é licenciada sob a [Licença XYZ]. Consulte o arquivo [LICENSE.md](link para o arquivo LICENSE.md) para obter mais informações sobre os direitos e restrições dessa licença.
+Esta extensão é licenciada sob a MIT License. Consulte o arquivo [LICENSE.md](https://github.com/sjvinicius/ExtOkEntrega/blob/main/LICENSE.md) para obter mais informações sobre os direitos e restrições dessa licença.
 
 ## Agradecimentos
 Gostaríamos de agradecer aos desenvolvedores que contribuíram para o desenvolvimento desta extensão: Henrique Cecatto e Rafael Cecatto. Seus esforços foram fundamentais para tornar essa ferramenta uma realidade.
