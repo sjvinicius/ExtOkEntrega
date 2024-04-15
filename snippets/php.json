@@ -24,9 +24,7 @@
         "prefix": "okphp8printdev",
         "body": [
             "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okDevUserId}) {",
-            "\tprint_r('<br><br><pre>');",
             "\tprint_r(${2:message});",
-            "\tprint_r('<br><br></pre>');",
             "\tdie();",
             "}"
         ],
@@ -36,9 +34,7 @@
         "prefix": "okphp8printhml",
         "body": [
             "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okHmlUserId}) {",
-            "\tprint_r('<br><br><pre>');",
             "\tprint_r(${2:message});",
-            "\tprint_r('<br><br></pre>');",
             "\tdie();",
             "}"
         ],
@@ -48,9 +44,7 @@
         "prefix": "okphp8printprod",
         "body": [
             "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okProdUserId}) {",
-            "\tprint_r('<br><br><pre>');",
             "\tprint_r(${2:message});",
-            "\tprint_r('<br><br></pre>');",
             "\tdie();",
             "}"
         ],
@@ -71,15 +65,16 @@
             "\t\ttrace: count(\\$trace) > 0 ? \\$trace : [__CLASS__ => ['function' => __FUNCTION__, 'file' => __FILE__]]",
             "\t);",
             "} finally {",
-            "\\$retorno['resposta_status']['time'] = microtime(true) - \\$retorno['resposta_status']['time'];",
-            "}"
+            "\t\\$retorno['resposta_status']['time'] = microtime(true) - \\$retorno['resposta_status']['time'];",
+            "}",
+            "return \\$retorno"
         ],
         "description": "try catch finally default"
     },
     "okGetHostName": {
         "prefix": "okphp8gethostname",
         "body": [
-            "$host = new Host();",
+            "$host = '';",
             "",
             "$host->getAcronymServerName() : string",
             "// 'DEV' || 'HML' || 'PROD'",
@@ -150,7 +145,7 @@
         "description": "Diferencia a variável de URL pelo hostname do servidor."
     },
     "okQuery": {
-        "prefix": "okphp8initclass",
+        "prefix": "okphp8query",
         "body": [
             "\\$sql = '${1:sql}'",
             "",
@@ -163,5 +158,17 @@
             "\\$this->retorno['resposta_dados']['list'] = \\$result_query['resposta_dados']['query'];"
         ],
         "description": "Diferencia a variável de URL pelo hostname do servidor."
+    },
+    "okGetRealm": {
+        "prefix": "okphp8getrealm",
+        "body": [
+            "$getrealm = parent::getRealm(\\$_SESSION['okentrega']['acesso']['user_id']);",
+            "",
+            "if(\\$getrealm['resposta_status']['status'] != 1) {",
+            "",
+            "\t\\$retorno = \\$this->erro_retornofuncao(__LINE__, 'Erro ao buscar informações do usuário');",
+            "}"
+        ],
+        "description": "Trecho de código para resgatar o tipo de acesso do usuário."
     }
 }

@@ -2,8 +2,25 @@
 
 All notable changes to the "extok" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.2.1]
 
-## [Unreleased]
+# Adicionado
+- First Change Log Commit
 
-- Initial release
+## [0.2.0]
+
+# Adicionado
+- Funcionalidade de snippets em JS e PHP
+- Documentação README.md
+
+## [0.3.0]
+
+# Adicionado
+- 'okGetHostName' -> Ajuste no retorno do snippet
+  - Adicionando valor vazio na inicialização da variável '$host'
+- 'devPrint' -> Ajuste no retorno do snippet
+  - Remoção das tags <pre></pre>
+- 'hmlPrint' -> Ajuste no retorno do snippet
+  - Remoção das tags <pre></pre>
+- 'prodPrint' -> Ajuste no retorno do snippet
+  - Remoção das tags <pre></pre>

@@ -2,7 +2,7 @@
     "objectAjax": {
         "prefix": "okajax",
         "body": [
-            "let ajax = new OkAjax('${1:FunctionName}', '${2:File}');",
+            "let ajax = new OkAjax('${1:FunctionName}', '${2:Folder.Prefix.File}');",
             "",
             "ajax.dataProps = {};",
             "",
