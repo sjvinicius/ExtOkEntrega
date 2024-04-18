@@ -2,7 +2,7 @@
   "name": "extok",
   "displayName": "OK Entrega (Snippets/Formatter)",
   "description": "Atalhos de padronização de código do OK Entrega",
-  "version": "0.3.5",
+  "version": "0.3.4",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -72,7 +72,7 @@
             "default": false,
             "description": ""
           },
-          "php-testar1.inlayHints.types.suppressVariableFromLiteral": {
+          "php.inlayHints.types.suppressVariableFromLiteral": {
             "type": "boolean",
             "default": false,
             "description": ""
@@ -82,7 +82,7 @@
             "default": false,
             "description": ""
           },
-          "php-teste-testar.format.codeStyle": {
+          "php.format.codeStyle": {
             "type": "string",
             "default": "PSR-12",
             "description": ""
