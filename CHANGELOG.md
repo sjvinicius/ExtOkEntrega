@@ -1,21 +1,18 @@
 # Change Log
 
-All notable changes to the "extok" extension will be documented in this file.
+As últimas atualizações sobre a extensão são:
 
-## [0.2.1]
+## [0.3.2]
 
-# Adicionado
-- First Change Log Commit
+- Ajuste nas configurações predefinidas
+ 
+## [0.3.1]
 
-## [0.2.0]
-
-# Adicionado
-- Funcionalidade de snippets em JS e PHP
-- Documentação README.md
+- Ajuste no changelog
 
 ## [0.3.0]
 
-# Adicionado
+### Alterado
 - 'okGetHostName' -> Ajuste no retorno do snippet
   - Adicionando valor vazio na inicialização da variável '$host'
 - 'devPrint' -> Ajuste no retorno do snippet
@@ -24,3 +21,14 @@ All notable changes to the "extok" extension will be documented in this file.
   - Remoção das tags <pre></pre>
 - 'prodPrint' -> Ajuste no retorno do snippet
   - Remoção das tags <pre></pre>
+  
+## [0.2.1]
+
+### Alterado
+- First Change Log Commit
+
+## [0.2.0]
+
+### Alterado
+- Funcionalidade de snippets em JS e PHP
+- Documentação README.md

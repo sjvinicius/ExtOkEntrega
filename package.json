@@ -2,7 +2,7 @@
   "name": "extok",
   "displayName": "OK Entrega (Snippets/Formatter)",
   "description": "Atalhos de padronização de código do OK Entrega",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -48,7 +48,27 @@
             "type": "string",
             "default": "${9999:ProdUserId}",
             "description": "ID Usuário OK Entrega (Produção)"
-          }
+          },
+          "[php]": {
+            "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+            "editor.tabSize": 4
+          },
+          "php.codeLens.enabled": true,
+          "php.inlayHints.parameters.enabled": false,
+          "php.inlayHints.parameters.suppressNameMatchingValue": false,
+          "php.inlayHints.types.suppressVariableFromLiteral": false,
+          "php.inlayHints.types.return": false,
+          "php.format.codeStyle": "PSR-12",
+          "php.format.rules.openBraceOnNewLineForFunctions": true,
+          "php.format.rules.openBraceOnNewLineForBlocks": false,
+          "php.format.rules.openBraceOnNewLineForTypes": true,
+          "php.format.rules.addCommaAfterLastArrayElement": true,
+          "prettier.useTabs": true,
+          "prettier.tabWidth": 4,
+          "prettier.quoteProps": "consistent",
+          "prettier.singleQuote": false,
+          "php-cs-fixer.autoFixByBracket": true,
+          "prettier.printWidth": 120
         }
       }
     ],
