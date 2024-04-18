@@ -2,6 +2,10 @@
 
 As últimas atualizações sobre a extensão são:
 
+## [0.3.4]
+
+- Novo ajuste nas configurações predefinidas
+- 
 ## [0.3.2]
 
 - Ajuste nas configurações predefinidas

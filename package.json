@@ -2,7 +2,7 @@
   "name": "extok",
   "displayName": "OK Entrega (Snippets/Formatter)",
   "description": "Atalhos de padronização de código do OK Entrega",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -50,25 +50,93 @@
             "description": "ID Usuário OK Entrega (Produção)"
           },
           "[php]": {
-            "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
-            "editor.tabSize": 4
+            "type": "object",
+            "default": {
+              "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+              "editor.tabSize": 4
+            },
+            "description": ""
           },
-          "php.codeLens.enabled": true,
-          "php.inlayHints.parameters.enabled": false,
-          "php.inlayHints.parameters.suppressNameMatchingValue": false,
-          "php.inlayHints.types.suppressVariableFromLiteral": false,
-          "php.inlayHints.types.return": false,
-          "php.format.codeStyle": "PSR-12",
-          "php.format.rules.openBraceOnNewLineForFunctions": true,
-          "php.format.rules.openBraceOnNewLineForBlocks": false,
-          "php.format.rules.openBraceOnNewLineForTypes": true,
-          "php.format.rules.addCommaAfterLastArrayElement": true,
-          "prettier.useTabs": true,
-          "prettier.tabWidth": 4,
-          "prettier.quoteProps": "consistent",
-          "prettier.singleQuote": false,
-          "php-cs-fixer.autoFixByBracket": true,
-          "prettier.printWidth": 120
+          "php.codeLens.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "php.inlayHints.parameters.enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "php.inlayHints.parameters.suppressNameMatchingValue": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "php.inlayHints.types.suppressVariableFromLiteral": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "php.inlayHints.types.return": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "php.format.codeStyle": {
+            "type": "string",
+            "default": "PSR-12",
+            "description": ""
+          },
+          "php.format.rules.openBraceOnNewLineForFunctions": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "php.format.rules.openBraceOnNewLineForBlocks": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "php.format.rules.openBraceOnNewLineForTypes": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "php.format.rules.addCommaAfterLastArrayElement": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "prettier.useTabs": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "prettier.tabWidth": {
+            "type": "integer",
+            "default": 4,
+            "description": ""
+          },
+          "prettier.quoteProps": {
+            "type": "string",
+            "default": "consistent",
+            "description": ""
+          },
+          "prettier.singleQuote": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "php-cs-fixer.autoFixByBracket": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "prettier.printWidth": {
+            "type": "integer",
+            "default": 120,
+            "description": ""
+          }
         }
       }
     ],
