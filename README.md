@@ -1,10 +1,10 @@
 # Extensão de Padronização de Códigos
 
 ## Descrição
-A extensão de Padronização de Códigos é uma ferramenta desenvolvida pela empresa Stil Soluções para auxiliar desenvolvedores na padronização da utilização de determinados códigos. Com essa extensão, você poderá agilizar o processo de codificação, reduzir erros e manter um estilo de código consistente em toda a equipe.
+A extensão de Padronização de Códigos é uma ferramenta desenvolvida pelos desenvolvedores da empresa Stil Soluções para auxiliar na padronização da utilização de determinados códigos. Com essa extensão, você poderá agilizar o processo de codificação, reduzir erros e manter um estilo de código consistente em toda a equipe.
 
 ## Recursos Principais
-- (Em breve) **Padronização Automática**: A extensão realiza a formatação automática do código de acordo com as regras de estilo definidas.
+- *New* **Padronização Automática**: A extensão realiza a formatação automática do código de acordo com as regras de estilo definidas.
 - **Atalhos Personalizados**: Foram adicionados atalhos personalizados para agilizar a utilização dos recursos da extensão.
 
 ## Instalação
@@ -13,6 +13,9 @@ A extensão de Padronização de Códigos é uma ferramenta desenvolvida pela em
 3. Pesquise por "Ok Entrega" na barra de busca.
 4. Clique em "Instalar" ao lado da extensão oferecida pelo Autor "Vinicius Silva de Jesus".
 5. Aguarde a instalação e, em seguida, clique em "Reload" para ativar a extensão.
+6. Pesquise por "Package Ext OK Entrega" na barra de busca.
+7. Clique em "Instalar" ao lado da extensão oferecida pelo Autor "Vinicius Silva de Jesus".
+8. Aguarde a instalação e, em seguida, clique em "Reload" para ativar a extensão.
 
 ## Configuração
 A extensão de Padronização de Códigos oferece algumas opções de configuração para personalização. Para acessar as configurações, siga os passos abaixo:
@@ -25,8 +28,7 @@ A extensão de Padronização de Códigos oferece algumas opções de configura�
 ## Atalhos Personalizados
 A extensão de Padronização de Códigos disponibiliza os seguintes atalhos personalizados para facilitar a utilização:
 
-- (Em breve) **Ctrl+Shift+F**: Formata o código de acordo com as regras de estilo definidas pela extensão.
-- (Em breve) **Ctrl+Shift+L**: Realiza a verificação de linting no código e exibe os problemas encontrados.
+- *New* **Alt+Shift+F**: Formata o código de acordo com as regras de estilo definidas pela extensão.
 
 A extensão de atalhos personalizados disponibiliza os seguintes atalhos personalizados para facilitar a utilização:
 
@@ -37,19 +39,48 @@ A extensão de atalhos personalizados disponibiliza os seguintes atalhos persona
 ### Passo 1: Instalação e Configuração
 Siga as instruções descritas nas seções de "Instalação" e "Configuração" acima para instalar e configurar a extensão corretamente.
 
-### Passo 2: (Em breve) Formatação Automática do Código
+### Passo 2: *New* Formatação Automática do Código
 Para formatar automaticamente o código de acordo com as regras de estilo definidas pela extensão, siga os passos abaixo:
 
 1. Selecione o trecho de código que deseja formatar ou deixe o cursor em uma linha do arquivo que deseja formatar por completo.
 2. Pressione o atalho **Ctrl+Shift+F**.
 3. Observe que o código será automaticamente formatado de acordo com as regras de estilo definidas.
 
-### Passo 3: (Em breve) Verificação de Linting
-A extensão também oferece a funcionalidade de verificar problemas de linting no código. Para realizar a verificação, siga os passos abaixo:
+## Exemplos
 
-1. Abra o arquivo que deseja verificar.
-2. Pressione o atalho **Ctrl+Shift+L**.
-3. A extensão realizará a verificação de linting no código e exibirá os problemas encontrados na área de problemas.
+### Javascript
+ ![Utilização dos snippets do Javascript](./documentation/assets/JS.gif)
+
+### PHP (Class)
+ ![Utilização dos snippets do Javascript](./documentation/assets/PHP.gif)
+
+### Configurações Definidas de Formatação (USER SETTINGS JSON)
+
+```json
+{
+    "[php]": {
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+        "editor.tabSize": 4
+    },
+    "prettier.singleQuote": false,
+    "php.inlayHints.parameters.enabled": false,
+    "php.inlayHints.parameters.suppressNameMatchingValue": false,
+    "php.inlayHints.types.return": false,
+    "php.format.codeStyle": "PSR-12",
+    "php.format.rules.openBraceOnNewLineForFunctions": true,
+    "php.format.rules.openBraceOnNewLineForBlocks": false,
+    "php.format.rules.addCommaAfterLastArrayElement": true,
+    "prettier.useTabs": true,
+    "prettier.tabWidth": 4,
+    "prettier.quoteProps": "consistent",
+    "php-cs-fixer.autoFixByBracket": true,
+    "prettier.printWidth": 120,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "php.codeLens.enabled": true
+}
+```
 
 ## Suporte e Contribuição
 Se você encontrar algum problema com a extensão ou tiver sugestões de melhorias, por favor, abra uma nova issue no repositório oficial da extensão https://github.com/sjvinicius/ExtOkEntrega ou envie um e-mail para [jesus@okentrega.com.br](mailto:jesus@okentrega.com.br).

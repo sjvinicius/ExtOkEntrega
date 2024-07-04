@@ -56,8 +56,8 @@
             "try {",
             "",
             "} catch (\\\\Exception \\$e) {",
-            "\t\\$trace = \\$retorno['resposta_status']['files_error'];",
-            "\t\\$retorno = (new Retorno())->erro_retornofuncao(",
+            "\t\\$trace = \\$this->retorno['resposta_status']['files_error'];",
+            "\t\\$this->retorno = (new Retorno())->erro_retornofuncao(",
             "\t\tline: \\$e->getLine(),",
             "\t\tmsg: \\$e->getMessage(),",
             "\t\terro_code: null,",
@@ -65,21 +65,21 @@
             "\t\ttrace: count(\\$trace) > 0 ? \\$trace : [__CLASS__ => ['function' => __FUNCTION__, 'file' => __FILE__]]",
             "\t);",
             "} finally {",
-            "\t\\$retorno['resposta_status']['time'] = microtime(true) - \\$retorno['resposta_status']['time'];",
+            "\t\\$this->retorno['resposta_status']['time'] = microtime(true) - \\$this->retorno['resposta_status']['time'];",
             "}",
-            "return \\$retorno"
+            "return \\$this->retorno;"
         ],
         "description": "try catch finally default"
     },
     "okGetHostName": {
         "prefix": "okphp8gethostname",
         "body": [
-            "$host = '';",
+            "\\$host = '';",
             "",
-            "$host->getAcronymServerName() : string",
+            "\\$host->getAcronymServerName() : string",
             "// 'DEV' || 'HML' || 'PROD'",
             "",
-            "$host->getBaseUrl($acronym = '') : string",
+            "\\$host->getBaseUrl($acronym = '') : string",
             "// - Retorna a base url : ",
             "// - http://oks-s-dev.stil",
             "// - https://hml.okentrega.com.br",
@@ -90,7 +90,7 @@
     "okInitReturn": {
         "prefix": "okphp8initretorno",
         "body": [
-            "\\$retorno = (new Retorno())->iniciar_retornofuncao();"
+            "\\$this->retorno = (new Retorno())->iniciar_retornofuncao();"
         ],
         "description": "Diferencia a variável de URL pelo hostname do servidor."
     },
@@ -101,13 +101,13 @@
             "",
             "\\$middleware = new Middleware();",
             "",
-            "// ${1} - Constante ou diretório até o arquivo",
-            "// ${2} - Nome do arquivo + extensão",
-            "// ${3} - Nome da Classe",
-            "// ${4} - Nome da Função",
-            "// ${5} - ['constructor' => [] 'function' => []] -- Parâmetro em ordem, do constructor ou da função",
+            "// \\${1} - Constante ou diretório até o arquivo",
+            "// \\${2} - Nome do arquivo + extensão",
+            "// \\${3} - Nome da Classe",
+            "// \\${4} - Nome da Função",
+            "// \\${5} - ['constructor' => [] 'function' => []] -- Parâmetro em ordem, do constructor ou da função",
             "",
-            "\\$response = $middleware->handle('${1:Constante ou diretório até o arquivo}@${2:Nome do arquivo + extensão}', '${3:Nome da Classe}@${4:Nome da Função}', ${5:['constructor' => [] 'function' => []]});",
+            "\\$response = \\$middleware->handle('${1:Constante ou diretório até o arquivo}@${2:Nome do arquivo + extensão}', '${3:Nome da Classe}@${4:Nome da Função}', ${5:['constructor' => [] 'function' => []]});",
             "",
             "\\$retorno = [];",
             "if (\\$response['resposta_status']['status'] == 1) {",
@@ -147,22 +147,20 @@
     "okQuery": {
         "prefix": "okphp8query",
         "body": [
-            "\\$sql = '${1:sql}'",
+            "\\$sql${sqlvariable} = '${2:sqlstring}';",
             "",
-            "\\$result_query = (new Query())->query($sql);",
+            "\\$query${sqlvariable} = (new Query())->query(\\$sql${sqlvariable});",
             "",
-            "if (\\$result_query['resposta_status']['status'] == 0) {",
-                "\tthrow new Exception(\\$result_query['resposta_status']['msg']);",
-            "}",
-            "",
-            "\\$this->retorno['resposta_dados']['list'] = \\$result_query['resposta_dados']['query'];"
+            "if (\\$query${sqlvariable}['resposta_status']['status'] == 0) {",
+            "\tthrow new Exception(\\$query${sqlvariable}['resposta_status']['msg']);",
+            "}"
         ],
         "description": "Diferencia a variável de URL pelo hostname do servidor."
     },
     "okGetRealm": {
         "prefix": "okphp8getrealm",
         "body": [
-            "$getrealm = parent::getRealm(\\$_SESSION['okentrega']['acesso']['user_id']);",
+            "\\$getrealm = parent::getRealm(\\$_SESSION['okentrega']['acesso']['user_id']);",
             "",
             "if(\\$getrealm['resposta_status']['status'] != 1) {",
             "",

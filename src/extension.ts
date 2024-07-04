@@ -21,6 +21,70 @@ export function activate(context: vscode.ExtensionContext) {
         registerSnippets(json, languageId, context);
     }
 
+    const config = vscode.workspace.getConfiguration();
+
+    // Define a type for your configuration keys and values
+    interface Configurations {
+        '[php]': object;
+        'php.codeLens.enabled': boolean;
+        'php.inlayHints.parameters.enabled': boolean;
+        "php.inlayHints.parameters.suppressNameMatchingValue": boolean;
+        "php.inlayHints.types.return": boolean;
+        "php.format.codeStyle": string;
+        "php.format.rules.openBraceOnNewLineForFunctions": boolean;
+        "php.format.rules.openBraceOnNewLineForBlocks": boolean;
+        "openBraceOnNewLineForTypes": boolean;
+        "php.format.rules.addCommaAfterLastArrayElement": boolean;
+        "prettier.useTabs": boolean;
+        "prettier.tabWidth": number;
+        "prettier.quoteProps": string;
+        "prettier.singleQuote": boolean;
+        "php-cs-fixer.autoFixByBracket": boolean;
+        "prettier.printWidth": number;
+        "editor.rulers": Array<number>;
+    }
+
+    // Define your configuration keys and values
+    const configurations: Configurations = {
+        '[php]': {
+            "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+            "editor.tabSize": 4
+        },
+        'prettier.singleQuote': false,
+        'php.codeLens.enabled': true,
+        'php.inlayHints.parameters.enabled': false,
+        "php.inlayHints.parameters.suppressNameMatchingValue": false,
+        "php.inlayHints.types.return": false,
+        "php.format.codeStyle": "PSR-12",
+        "php.format.rules.openBraceOnNewLineForFunctions": true,
+        "php.format.rules.openBraceOnNewLineForBlocks": false,
+        "openBraceOnNewLineForTypes": true,
+        "php.format.rules.addCommaAfterLastArrayElement": true,
+        "prettier.useTabs": true,
+        "prettier.tabWidth": 4,
+        "prettier.quoteProps": "consistent",
+        "php-cs-fixer.autoFixByBracket": true,
+        "prettier.printWidth": 120,
+        "editor.rulers": [
+            80,
+            120
+        ],
+    };
+
+    function applyDefaultSettings() {
+        (Object.keys(configurations) as (keyof Configurations)[]).forEach(key => {
+            config.update(key, configurations[key], vscode.ConfigurationTarget.Global);
+        });
+    }
+
+    applyDefaultSettings();
+
+    vscode.workspace.onDidChangeConfiguration(event => {
+        if (event.affectsConfiguration('extok')) {
+            applyDefaultSettings();
+        }
+    });
+
 }
 
 

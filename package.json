@@ -2,7 +2,7 @@
   "name": "extok",
   "displayName": "OK Entrega (Snippets/Formatter)",
   "description": "Atalhos de padronização de código do OK Entrega",
-  "version": "0.3.3",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -30,116 +30,98 @@
         "title": "Configurações"
       }
     ],
-    "configuration": [
-      {
-        "title": "OK Entrega (Snippets/Formatter)",
-        "properties": {
-          "okDevUserId": {
-            "type": "string",
-            "default": "${9999:devUserId}",
-            "description": "ID Usuário OK Entrega (Desenvolvimento)"
-          },
-          "okHmlUserId": {
-            "type": "string",
-            "default": "${9999:hmlUserId}",
-            "description": "ID Usuário OK Entrega (Homologação)"
-          },
-          "okProdUserId": {
-            "type": "string",
-            "default": "${9999:ProdUserId}",
-            "description": "ID Usuário OK Entrega (Produção)"
-          },
-          "[php]": {
-            "type": "object",
-            "default": {
-              "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
-              "editor.tabSize": 4
-            },
-            "description": ""
-          },
-          "php.codeLens.enabled": {
-            "type": "boolean",
-            "default": true,
-            "description": ""
-          },
-          "php.inlayHints.parameters.enabled": {
-            "type": "boolean",
-            "default": false,
-            "description": ""
-          },
-          "php.inlayHints.parameters.suppressNameMatchingValue": {
-            "type": "boolean",
-            "default": false,
-            "description": ""
-          },
-          "php.inlayHints.types.suppressVariableFromLiteral": {
-            "type": "boolean",
-            "default": false,
-            "description": ""
-          },
-          "php.inlayHints.types.return": {
-            "type": "boolean",
-            "default": false,
-            "description": ""
-          },
-          "php.format.codeStyle": {
-            "type": "string",
-            "default": "PSR-12",
-            "description": ""
-          },
-          "php.format.rules.openBraceOnNewLineForFunctions": {
-            "type": "boolean",
-            "default": true,
-            "description": ""
-          },
-          "php.format.rules.openBraceOnNewLineForBlocks": {
-            "type": "boolean",
-            "default": false,
-            "description": ""
-          },
-          "php.format.rules.openBraceOnNewLineForTypes": {
-            "type": "boolean",
-            "default": true,
-            "description": ""
-          },
-          "php.format.rules.addCommaAfterLastArrayElement": {
-            "type": "boolean",
-            "default": true,
-            "description": ""
-          },
-          "prettier.useTabs": {
-            "type": "boolean",
-            "default": true,
-            "description": ""
-          },
-          "prettier.tabWidth": {
-            "type": "integer",
-            "default": 4,
-            "description": ""
-          },
-          "prettier.quoteProps": {
-            "type": "string",
-            "default": "consistent",
-            "description": ""
-          },
-          "prettier.singleQuote": {
-            "type": "boolean",
-            "default": false,
-            "description": ""
-          },
-          "php-cs-fixer.autoFixByBracket": {
-            "type": "boolean",
-            "default": true,
-            "description": ""
-          },
-          "prettier.printWidth": {
-            "type": "integer",
-            "default": 120,
-            "description": ""
-          }
+    "configuration": {
+      "title": "OK Entrega (Snippets/Formatter)",
+      "properties": {
+        "okDevUserId": {
+          "type": "string",
+          "default": "${9999:devUserId}",
+          "description": "ID Usuário OK Entrega (Desenvolvimento)"
+        },
+        "okHmlUserId": {
+          "type": "string",
+          "default": "${9999:hmlUserId}",
+          "description": "ID Usuário OK Entrega (Homologação)"
+        },
+        "okProdUserId": {
+          "type": "string",
+          "default": "${9999:ProdUserId}",
+          "description": "ID Usuário OK Entrega (Produção)"
+        },
+        "editor.defaultFormatter": {
+          "type": "string",
+          "default": "DEVSENSE.phptools-vscode"
+        },
+        "editor.tabSize": {
+          "type": "integer",
+          "default": 4
+        },
+        "php.codeLens.enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "php.inlayHints.parameters.enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "php.inlayHints.parameters.suppressNameMatchingValue": {
+          "type": "boolean",
+          "default": false
+        },
+        "php.inlayHints.types.suppressVariableFromLiteral": {
+          "type": "boolean",
+          "default": false
+        },
+        "php.inlayHints.types.return": {
+          "type": "boolean",
+          "default": false
+        },
+        "php.format.codeStyle": {
+          "type": "string",
+          "default": "PSR-12"
+        },
+        "php.format.rules.openBraceOnNewLineForFunctions": {
+          "type": "boolean",
+          "default": true
+        },
+        "php.format.rules.openBraceOnNewLineForBlocks": {
+          "type": "boolean",
+          "default": false
+        },
+        "php.format.rules.openBraceOnNewLineForTypes": {
+          "type": "boolean",
+          "default": true
+        },
+        "php.format.rules.addCommaAfterLastArrayElement": {
+          "type": "boolean",
+          "default": true
+        },
+        "prettier.useTabs": {
+          "type": "boolean",
+          "default": true
+        },
+        "prettier.tabWidth": {
+          "type": "integer",
+          "default": 4
+        },
+        "prettier.quoteProps": {
+          "type": "string",
+          "default": "consistent"
+        },
+        "prettier.singleQuote": {
+          "type": "boolean",
+          "default": false
+        },
+        "php-cs-fixer.autoFixByBracket": {
+          "type": "boolean",
+          "default": true
+        },
+        "prettier.printWidth": {
+          "type": "integer",
+          "default": 120
         }
       }
-    ],
+    },
     "languages": [
       {
         "id": "php",
