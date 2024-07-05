@@ -48,11 +48,12 @@ Para formatar automaticamente o código de acordo com as regras de estilo defini
 
 ## Exemplos
 
-### Javascript
- ![Utilização dos snippets do Javascript](./documentation/assets/JS.gif)
+### Javascript!
+<img src="https://github.com/sjvinicius/ExtOkEntrega/blob/main/documentation/assets/JS.gif?raw=true" alt="Utilização dos snippets Javascript">
+
 
 ### PHP (Class)
- ![Utilização dos snippets do Javascript](./documentation/assets/PHP.gif)
+<img src="https://github.com/sjvinicius/ExtOkEntrega/blob/main/documentation/assets/PHP.gif?raw=true" alt="Utilização dos snippets PHP">
 
 ### Configurações Definidas de Formatação (USER SETTINGS JSON)
 
