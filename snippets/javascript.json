@@ -61,11 +61,11 @@
         ],
         "description": "Template para chamada da função do iziToast"
     },
-    "Ok Function": {
+	"Ok Function": {
         "prefix": "okfunction",
         "body": [
-            "function '${1:nomeFunction}' () {",
-            "\t${2:okajax}",
+            "function ${1:nomeFunction} (data) {",
+            "\t${2:okajax}   //press Ctrl + Space",
             "}"
         ],
         "description": "Template para criar função com ajax"
