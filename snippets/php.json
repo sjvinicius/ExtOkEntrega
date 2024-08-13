@@ -170,36 +170,36 @@
         "description": "Trecho de código para resgatar o tipo de acesso do usuário."
     },
     "createFunction": {
-	"prefix": "okphp8function",
-	"body": [
-	    "${1:public | protected | private} function ${2:nameFunction}()",
-	    "{",
-	    "\ttry {",
-	    "\t\t",
-	    "\t} catch (\\\\Exception \\$e) {",
-	    "\t\t\\$trace = \\$this->retorno['resposta_status']['files_error'];",
+        "prefix": "okphp8function",
+        "body": [
+            "${1:public | protected | private} function ${2:nameFunction}()",
+            "{",
+            "\ttry {",
+            "\t\t",
+            "\t} catch (\\\\Exception \\$e) {",
+            "\t\t\\$trace = \\$this->retorno['resposta_status']['files_error'];",
             "\t\t\\$this->retorno = (new Retorno())->erro_retornofuncao(",
             "\t\t\tline: \\$e->getLine(),",
             "\t\t\tmsg: \\$e->getMessage(),",
             "\t\t\terro_code: null,",
             "\t\t\tstatus: \\$e->getCode(),",
             "\t\t\ttrace: count(\\$trace) > 0 ? \\$trace : [__CLASS__ => ['function' => __FUNCTION__, 'file' => __FILE__]]",
-	    "\t\t);",
-	    "\t} finally {",
+            "\t\t);",
+            "\t} finally {",
             "\t\t\\$this->retorno['resposta_status']['time'] = microtime(true) - \\$this->retorno['resposta_status']['time'];",
             "\t}",
             "\treturn \\$this->retorno;",
-	    "}"
-	],
-	"description": "create function default",
+            "}"
+        ],
+        "description": "create function default"
     },
     "ifThrow": {
-	"prefix": "okphp8throw",
-	"body": [
-	    "if (${1:condition}) {",
-	    "\tthrow new Exception(${2:message});",
+        "prefix": "okphp8throw",
+        "body": [
+            "if (${1:condition}) {",
+            "\tthrow new Exception(${2:message});",
             "}"
-	],
-	"description": "'if throw' facilitated"
+        ],
+        "description": "'if throw' facilitated"
     }
 }
