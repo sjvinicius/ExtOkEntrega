@@ -192,5 +192,14 @@
 	    "}"
 	],
 	"description": "create function default",
-	}
+    },
+    "ifThrow": {
+	"prefix": "okphp8throw",
+	"body": [
+	    "if (${1:condition}) {",
+	    "\tthrow new Exception(${2:message});",
+            "}"
+	],
+	"description": "'if throw' facilitated"
+    }
 }
