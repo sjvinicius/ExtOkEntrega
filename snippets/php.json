@@ -141,7 +141,8 @@
 					"\t\\$this->retorno = (new Retorno())->iniciar_retornofuncao();",
 					"\t\\$this->token = \\$_SESSION['okentrega']['acesso']['token'];",
 				"}",
-			"}"
+			"}",
+			"?>"
 		],
 		"description": "create a the new class in php8."
     },
