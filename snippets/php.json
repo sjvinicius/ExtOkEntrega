@@ -151,12 +151,12 @@
 			"<?php",
 			"",
 			"ini_set('display_errors', 0);",
-			""/* Montando o código do erro que será apresentado */""
+			"/* Montando o código do erro que será apresentado */"
 			"\\$localizar = array(strtolower(__DIR__), '/', '\\\\\\\\', '.php', '.');",
 			"\\$substituir = array('', '', '', '', '-');",
 			"\\$error_code = strtoupper(str_replace(\\$localizar, \\$substituir, strtolower(__FILE__))) . '-';",
 			"",
-			/* Verificando variavel sessão */
+			"/* Verificando variavel sessão */"
 			"include_once(dirname(__DIR__, 1) . '/system/sys.iniciar_sessao.php8');",
 			"",
 			"if (!empty(\\$_SESSION['okentrega']['acesso']['token'])) {",
@@ -225,7 +225,8 @@
 			"",
 									"\t\t\t\t\t\t<div class='card-body'>",
 										"\t\t\t\t\t\t\t<table id='tableintegracoes' class='display' style='min-width: 845px;'></table>",
-										"\t\t\t\t\t\t\t<center id='msg_filtrar'>Hello World !",
+										"\t\t\t\t\t\t\t<center id='msg_filtrar'>",
+										"\t\t\t\t\t\t\t\tHello World !"
 										"\t\t\t\t\t\t\t</center>",
 									"\t\t\t\t\t\t</div>",
 								"\t\t\t\t\t</div>",
