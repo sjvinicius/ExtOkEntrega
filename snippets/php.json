@@ -249,7 +249,7 @@
         "body": [
             "\\$sql${sqlvariable} = '${2:sqlstring}';",
             "",
-            "\\$query${sqlvariable} = $this->queryClass->query(\\$sql${sqlvariable});",
+            "\\$query${sqlvariable} = \\$this->queryClass->query(\\$sql${sqlvariable});",
             "",
             "if (\\$query${sqlvariable}['resposta_status']['status'] == 0) {",
             "\tthrow new Exception(\\$query${sqlvariable}['resposta_status']['msg']);",
