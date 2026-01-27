@@ -162,7 +162,6 @@
             "if (!empty(\\$_SESSION['okentrega']['acesso']['token'])) {",
             "\t\\$page = str_replace(__DIR__ . '/', '', __FILE__);",
             "",
-            "\tinclude_once(\\$_SESSION['okentrega']['path']['application'] . 'frete.validacaoFatura.class.php8');",
             "\tinclude_once(\\$_SESSION['okentrega']['path']['application'] . '${1:pre}.${2:file}.class.php8');",
             "\t\\$instancia = new ${1:pre}${2:file}();",
             "\t\\$validarToken = \\$instancia->validarAcesso(\\$_SESSION['okentrega']['acesso']['token'], \\$page);",
@@ -186,7 +185,7 @@
             "<head>",
             "\t<meta charset='UTF-8'>",
             "\t<meta http-equiv='X-UA-Compatible' content='IE=edge'>",
-            "\t<meta name='keywords' content='Entrega OK Entrega Fatura Logística' />",
+            "\t<meta name='keywords' content='Entrega OK Entrega Logística' />",
             "\t<meta name='author' content='OK Entrega' />",
             "\t<meta name='robots' content='' />",
             "\t<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
@@ -217,12 +216,11 @@
             "\t\t\t\t\t\t\t\t<h5 class='card-title validation-second-popOver text-nowrap'>",
             "\t\t\t\t\t\t\t\t\tNova Tela",
             "\t\t\t\t\t\t\t\t</h5>",
-            "\t\t\t\t\t\t\t\t\t<!-- <button class='btn btn-primary' id='integrationbtn' onclick='$('#filterintegration').modal('show')'>aqui o botão</button> -->",
             "\t\t\t\t\t\t\t</div>",
             "\t\t\t\t\t\t</div>",
             "",
             "\t\t\t\t\t\t<div class='card-body'>",
-            "\t\t\t\t\t\t\t<table id='tableintegracoes' class='display' style='min-width: 845px;'></table>",
+            "\t\t\t\t\t\t\t<table id='tableName' class='display' style='min-width: 845px;'></table>",
             "\t\t\t\t\t\t\t<center id='msg_filtrar'>",
             "\t\t\t\t\t\t\t\tHello World !",
             "\t\t\t\t\t\t\t</center>",
@@ -301,5 +299,15 @@
             "}"
         ],
         "description": "'if throw' facilitated"
+    },
+    "throwQuery": {
+        "prefix": "okphp8throwQuery",
+        "body": [
+            "\\$query{2} = \\$this->queryClass->query(\\$${1:sql});",
+            "if (\\$query{2}['resposta_status']['status'] != 1) {",
+            "\tthrow new Exception(\\$query{2}['resposta_status']['msg']);",
+            "}"
+        ],
+        "description": "'throw Query' facilitated"
     }
 }
