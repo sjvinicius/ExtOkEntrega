@@ -303,9 +303,9 @@
     "throwQuery": {
         "prefix": "okphp8throwQuery",
         "body": [
-            "\\$query{2} = \\$this->queryClass->query(\\$${1:sql});",
-            "if (\\$query{2}['resposta_status']['status'] != 1) {",
-            "\tthrow new Exception(\\$query{2}['resposta_status']['msg']);",
+            "\\$${2:query} = \\$this->queryClass->query(\\$${1:sql});",
+            "if (\\$${2:query}['resposta_status']['status'] != 1) {",
+            "\tthrow new Exception(\\$${2:query}['resposta_status']['msg']);",
             "}"
         ],
         "description": "'throw Query' facilitated"
