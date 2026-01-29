@@ -21,7 +21,7 @@
         "description": "Captura o valor do TOKEN da sessão."
     },
     "devPrint": {
-        "prefix": "okphp8printdev",
+        "prefix": "okprintdev",
         "body": [
             "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okDevUserId}) {",
             "\tprint_r(${2:message});",
@@ -31,7 +31,7 @@
         "description": "print_r + if de usuário DESENVOLVIMENTO"
     },
     "hmlPrint": {
-        "prefix": "okphp8printhml",
+        "prefix": "okprinthml",
         "body": [
             "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okHmlUserId}) {",
             "\tprint_r(${2:message});",
@@ -41,7 +41,7 @@
         "description": "print_r + if de usuário HOMOLOGAÇÃO"
     },
     "prodPrint": {
-        "prefix": "okphp8printprod",
+        "prefix": "okprintProd",
         "body": [
             "if (\\$_SESSION['okentrega']['acesso']['user_id'] == ${9999:okProdUserId}) {",
             "\tprint_r(${2:message});",
@@ -292,7 +292,7 @@
         "description": "create function default"
     },
     "ifThrow": {
-        "prefix": "okphp8throw",
+        "prefix": "okthrow",
         "body": [
             "if (${1:condition}) {",
             "\tthrow new Exception(${2:message});",
@@ -301,7 +301,7 @@
         "description": "'if throw' facilitated"
     },
     "throwQuery": {
-        "prefix": "okphp8throwQuery",
+        "prefix": "okthrowQuery",
         "body": [
             "\\$${2:query} = \\$this->queryClass->query(\\$${1:sql});",
             "if (\\$${2:query}['resposta_status']['status'] != 1) {",
@@ -309,5 +309,14 @@
             "}"
         ],
         "description": "'throw Query' facilitated"
+    },
+    "foreach": {
+        "prefix": "okforeach",
+        "body": [
+            "foreach (${1:query['resposta_dados']['query']} as $key => $value) {",
+            "\t",
+            "}"
+        ],
+        "description": "foreach facilited"
     }
 }
